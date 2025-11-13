@@ -29,6 +29,6 @@ Built using **HTML**, **CSS**, and **JavaScript**, the app fetches live data fro
 
 # The background image changes according to the weather of the loaction 
 
-![Weather App Screenshot]("assets/images/Screenshot%202025-11-13%20203327.png")
+![Weather App Screenshot](assets/images/Screenshot%202025-11-13%20203327.png)
 
 
