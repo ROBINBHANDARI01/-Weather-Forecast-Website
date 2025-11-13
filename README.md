@@ -25,4 +25,4 @@ Built using **HTML**, **CSS**, and **JavaScript**, the app fetches live data fro
 - **JavaScript (ES6)**  
 - **OpenWeatherMap API (v2.5)**  
 
-![Weather App Screenshot]("assets\images\Screenshot 2025-11-13 122250.png")
+![Weather App Screenshot]("assets/images/Screenshot 2025-11-13 122250.png")
