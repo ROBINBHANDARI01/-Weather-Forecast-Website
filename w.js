@@ -5,10 +5,6 @@ let image = document.getElementById("img");
 let input = document.getElementById("inp");
 let wind = document.getElementById("wind");
 
-
-
-
-
 input.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
         loader();
