@@ -1,389 +1,234 @@
-@media(max-width: 548px){
-  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-   position: relative;
-  background: url("assets/bg-images/cloudy2.jpg") center center/cover no-repeat fixed;
-     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+body {
+  position: relative;
+  min-height: 100vh;
+  background: url("assets/bg-images/cloudy2.jpg") center center / cover no-repeat fixed;
   font-family: 'Montserrat', sans-serif;
-    font-weight: 100;
-    font-size: small;
-}
-.container{
-    display: flex;
-    gap: 1em;
-}
-
-#error{
-  transition: opacity 0.3s ease;
-}
-
-.forecast {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 10px 5px;
-  scroll-snap-type: x mandatory;
-}
-
-.forecast-card {
-     background: rgba(255,255,255,0.15);
-     border-radius: 10px;
-     padding: 10px;
-     
-  scroll-snap-align: start;
-  min-width: 90px;
-  font-size:120%;
-}
-nav {
-  flex-wrap: wrap;
-  height: auto;
-  padding: 10px;
-  gap: 8px;
+  font-weight: 300;
+  font-size: 14px;
+  color: white;
 }
 
 #bg-overlay {
   position: fixed;
-  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
-  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.75));
-  z-index: 0; /* stays behind all content */
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.75));
+  z-index: 0;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    color: white;
+/* NAVBAR */
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+
 }
 
-h1{
-    color: white;
-   font-size: clamp(18px, 4vw, 26px);
-}
-nav{
-    z-index: 1000;
-    position: fixed;
-    height: 51px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.575);
-    opacity: 100%;
-    align-items: center;
-    width: 100vw;
-}
-#inp{
-    height: 25px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    padding-left: 15px;
-    background-color: rgb(22, 22, 22);
+nav h1 {
+  font-size: clamp(18px, 4vw, 26px);
+  font-weight: 400;
 }
 
-#inp::placeholder{
-    color: white;
-   
+.container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
-#error p{
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    font-weight: 600;
-    font-size: xx-large;
-}
+/* INPUT */
 
-
-
-.daily-box {
-  background: rgba(62, 62, 62, 0.2);
-  padding: 10px 15px;
-  border-radius: 12px;
-  min-width: 120px;
+#inp {
+  height: 32px;
+  width: 200px;
+  border-radius: 20px;
+  border: none;
+  padding: 0 15px;
+  background-color: rgb(22, 22, 22);
+  color: white;
   font-family: 'Montserrat';
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-size: 16px;
 }
 
-button{
-    color: white;
-    height: 33px;
-    width: 65px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    background-color: rgb(172, 172, 172);
+#inp::placeholder {
+  color: #ccc;
 }
 
-img{
-    height: 50px;
-}
-#city {
-  font-size: clamp(32px, 6vw, 66px);
-  color: rgb(255, 242, 0);
-  font-weight: 200;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-#temp {
-  font-size: clamp(28px, 5vw, 53px);
-}
-
-#main{
-    text-align: center;
-    position: relative;
-    z-index: 1;
-
-}
-.same{
-    margin-top: 13px;
-    font-size: 17px;
+button {
+  height: 32px;
+  width: 75px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(172, 172, 172);
+  color: black;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  cursor: pointer;
 }
 
-
-#maindaily{
-    margin: 40px 10px;
-    margin-top: 30px;
-        display: flex;
-        justify-content: space-around;
-    
-}
-.daily-forecast-date{
-    font-size: 25px;
-    font-weight: 600;
+button:hover {
+  background-color: rgb(190, 190, 190);
 }
 
-.max-daily-forecast {
-    
-    display: block;
-    text-align: center;
-    font-size: 15px
+#main {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 34px;
+
 }
 
-.min-daily-forecast{
-
-    display: block;
-    text-align: center;
-    font-size: 15px;
+#weather-content {
+  display: block;
 }
 
-.daily-forecast-logo{
-    margin-top: 10px;
-}
+/* WEATHER INFO */
 
-.weather-type-daily-forecast{
-    font-size: larger;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 7px;
-}
-
-#icon{
-    margin-top: 70px;
-
+#icon {
+  height: 70px;
+  margin-top: 20px;
   filter: brightness(0) invert(1);
 }
+
+#city {
+  margin-top: -10px;
+  font-size: clamp(32px, 6vw, 66px);
+  color: rgb(255, 242, 0);
+  font-weight: 300;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#temp {
+  font-size: clamp(28px, 5vw, 53px);
+  margin-top: 10px;
+}
+
+.same {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+/* 5 DAY FORECAST */
+
+#maindaily {
+  margin: 30px 10px;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 11px;
+  padding: 20px;
+  justify-items: center;
+}
+
+
+.forecast-card {
+  width: 75%;
+  max-width: 140px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  font-size: 15px;
+  transition: transform 0.2s ease, box-shadow 0.1s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ERROR SCREEN */
+
+#error {
+  display: none;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#error p {
+  font-weight: 600;
+  font-size: 24px;
+  margin-top: 40px;
+}
+
+/* MAKING RESPONSIVE FOR SMALLER SCREENS */
+
 @media (max-width: 768px) {
   #icon {
-    margin-top: 100px;
+    margin-top: 40px;
   }
 
   .same {
     font-size: 14px;
   }
 
-  #maindaily {
-    margin: 20px 5px;
+  #inp {
+    width: 170px;
+  }
+}
+
+@media (max-width: 768px) {
+  #main {
+    padding-top: 90px;
+  }
+
+  #city {
+    font-size: 36px;
+  }
+
+  #temp {
+    font-size: 30px;
+  }
+
+  .same {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .forecast {
+    padding: 16px 12px;
   }
 }
 
 @media (max-width: 480px) {
-  nav h1 {
-    display: none;
+  #main {
+    padding-top: 80px;
   }
 
-  #inp {
-    width: 180px;
+  #city {
+    font-size: 32px;
   }
 
-  button {
-    width: 70px;
+  #temp {
+    font-size: 26px;
   }
 
   .forecast-card {
+    max-width: 100%;
+  }
+
+  button {
+    width: 64px;
     font-size: 14px;
   }
+
+  #inp {
+    width: 150px;
+  }
 }
-
-@media(max-width: 600px){
-   body{ height: 100%;
-}}
-body{
-   position: relative;
-  background: url("assets/bg-images/cloudy2.jpg") center center/cover no-repeat fixed;
-     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: 'Montserrat', sans-serif;
-    font-weight: 100;
-    font-size: small;
-
-}
-
-#error{
-  transition: opacity 0.3s ease;
-}
-
-
-#bg-overlay {
-  position: fixed;
-  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
-  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.75));
-  z-index: 0; /* stays behind all content */
-}
-
-
-
-*{
-    margin: 0;
-    padding: 0;
-    color: white;
-}
-
-h1{
-    color: white;
-   
-}
-nav{
-    z-index: 1000;
-    position: fixed;
-    height: 51px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.575);
-    opacity: 100%;
-    align-items: center;
-    width: 100vw;
-}
-#inp{
-    height: 25px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    padding-left: 15px;
-    background-color: rgb(22, 22, 22);
-}
-
-#inp::placeholder{
-    color: white;
-   
-}
-
-#error p{
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    font-weight: 600;
-    font-size: xx-large;
-}
-
-#maindaily {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-
-.daily-box {
-  background: rgba(87, 87, 87, 0.2);
-  padding: 10px 15px;
-  border-radius: 12px;
-  min-width: 120px;
-  font-family: 'Montserrat';
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-
-button{
-    color: white;
-    height: 33px;
-    width: 65px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    background-color: rgb(172, 172, 172);
-}
-
-img{
-    height: 50px;
-}
-#city{
-    color: rgb(255, 179, 0);
-    font-size:66px;
-    margin-top: -15px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-#temp{
-margin-top: 10px;
-    font-size: 53px;
-    font-weight: 800;
-}
-
-#main{
-    text-align: center;
-    position: relative;
-    z-index: 1;
-
-}
-.same{
-    margin-top: 13px;
-    font-size: 17px;
-}
-
-
-#maindaily{
-    margin: 150px;
-    margin-top: 60px;
-        display: flex;
-        justify-content: space-around;
-    
-}
-.daily-forecast-date{
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.max-daily-forecast {
-    
-    display: block;
-    text-align: center;
-    font-size: 15px
-}
-
-.min-daily-forecast{
-
-    display: block;
-    text-align: center;
-    font-size: 15px;
-}
-
-.daily-forecast-logo{
-    margin-top: 10px;
-}
-
-.weather-type-daily-forecast{
-    font-size: larger;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 7px;
-}
-
-#icon{
-    margin-top: 70px;
-
-  filter: brightness(0) invert(1);
-}
-

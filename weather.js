@@ -77,9 +77,9 @@ const errorText = errorScreen.querySelector("p");
     getForecast(jsonData.coord.lat, jsonData.coord.lon);
     temp.innerHTML = Math.floor(jsonData.main.temp) + " °C";
     type.innerHTML = jsonData.weather[0].main;
-    humidity.innerHTML = `Humidity : ${jsonData.main.humidity}`;
-    visibility.innerHTML = `Visibility : ${jsonData.visibility}`;
-    pressure.innerHTML = `Pressure : ${jsonData.main.pressure} Pa`;
+    humid.innerHTML = `Humidity : ${jsonData.main.humidity}`;
+    visibility.innerHTML = `Visibility : ${jsonData.visibility/1000} km`;
+    pressure.innerHTML = `Pressure : ${jsonData.main.pressure} hPa`;
     wind.innerHTML = `Speed : ${jsonData.wind.speed} m/s, Direction ${jsonData.wind.deg} `
     minTemp.innerHTML = `Minimum temperature : ${jsonData.main.temp_min}`;
     maxTemp.innerHTML = `Maximum tempreature : ${jsonData.main.temp_max}`;
@@ -178,25 +178,36 @@ function myFun() {
 }
 
 window.addEventListener("load", () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
+  if (!navigator.geolocation) {
+    data("New Delhi");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      try {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
-        const getData = await fetch(
+        const res = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}&units=metric`
         );
-        const jsonData = await getData.json();
-        data(jsonData.name); // use detected city name
-        getForecast(lat,lon)
-      },
-      (err) => {
-        console.warn("Geolocation denied, showing default city.");
+
+        if (!res.ok) throw new Error("Location weather fetch failed");
+
+        const jsonData = await res.json();
+
+        // 🔥 Directly render data (NO second fetch)
+        renderCurrentWeather(jsonData);
+        getForecast(lat, lon);
+
+      } catch (err) {
+        console.error(err);
         data("New Delhi"); // fallback
       }
-    );
-  } else {
-    data("New Delhi"); // fallback
-  }
+    },
+    () => {
+      data("New Delhi"); // permission denied
+    }
+  );
 });
