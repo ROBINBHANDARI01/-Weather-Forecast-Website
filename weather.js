@@ -12,95 +12,95 @@ let maxTemp = document.getElementById("max-temp");
 let c = document.getElementById("title");
 let API_key = "6d83156e4e40ca97d0c6924b832fe00c";
 
-  //Weather ICONS 
- const weatherIcons = {
-      clouds: "wi-cloudy.svg",
-      clear: "wi-day-sunny.svg",
-      rain: "wi-rain.svg",
-      snow: "wi-snow.svg",
-      haze: "wi-day-haze.svg",
-      mist: "wi-day-haze.svg",
-      thunderstorm: "wi-day-sleet-storm.svg",
-      smoke: "wi-smoke.svg",
-    };
+//Weather ICONS 
+const weatherIcons = {
+  clouds: "wi-cloudy.svg",
+  clear: "wi-day-sunny.svg",
+  rain: "wi-rain.svg",
+  snow: "wi-snow.svg",
+  haze: "wi-day-haze.svg",
+  mist: "wi-day-haze.svg",
+  thunderstorm: "wi-day-sleet-storm.svg",
+  smoke: "wi-smoke.svg",
+};
 
 input.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-        loader();
-       function loader() {
-        
-    // Check if loader already exists
-    if (!document.getElementById("loader")) {
+  if (event.key === "Enter") {
+    loader();
+    function loader() {
+
+      // Check if loader already exists
+      if (!document.getElementById("loader")) {
         const img = document.createElement("img");
         img.id = "loader";
         img.src = "assets/icons/loader.gif";
         const ele1 = document.getElementById("city");
         ele1.append(img);
-    }
+      }
 
-    myFun();
-}
+      myFun();
     }
+  }
 })
 const data = async function (search) {
   
-    let getData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_key}&units=metric`);
-    console.log(getData);
-    let jsonData = await getData.json();
-    console.log(jsonData);
-    console.log(jsonData.name);
+  let getData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_key}&units=metric`);
+  console.log(getData);
+  let jsonData = await getData.json();
+  console.log(jsonData);
+  console.log(jsonData.name);
 
-    let weatherContent = document.getElementById("weather-content");
-    let errorScreen = document.getElementById("error");
-const errorText = errorScreen.querySelector("p");
-    let errorImg = document.getElementById("errimg");
+  let weatherContent = document.getElementById("weather-content");
+  let errorScreen = document.getElementById("error");
+  const errorText = errorScreen.querySelector("p");
+  let errorImg = document.getElementById("errimg");
 
-    if (jsonData.cod == 400) {
-        errorText.innerText = "Enter a city name !"
-        weatherContent.style.display = "none";
-        errorScreen.style.display = "block";
-        errorImg.src = "assets/icons/error1.png";
-        return;
-    }
-    if (jsonData.cod == 404) {
-        errorText.innerText = "Can't find city !"
-        weatherContent.style.display = "none";
-        errorScreen.style.display = "block";
-        errorImg.src = "assets/icons/error2.png";
-        return;
-    }
+  if (jsonData.cod == 400) {
+    errorText.innerText = "Enter a city name !"
+    weatherContent.style.display = "none";
+    errorScreen.style.display = "block";
+    errorImg.src = "assets/icons/error1.png";
+    return;
+  }
+  if (jsonData.cod == 404) {
+    errorText.innerText = "Can't find city !"
+    weatherContent.style.display = "none";
+    errorScreen.style.display = "block";
+    errorImg.src = "assets/icons/error2.png";
+    return;
+  }
 
-    weatherContent.style.display = "block";
-    errorScreen.style.display = "none";
+  weatherContent.style.display = "block";
+  errorScreen.style.display = "none";
 
-    city.innerHTML = jsonData.name;
-    getForecast(jsonData.coord.lat, jsonData.coord.lon);
-    temp.innerHTML = Math.floor(jsonData.main.temp) + " °C";
-    type.innerHTML = jsonData.weather[0].main;
-    humid.innerHTML = `Humidity : ${jsonData.main.humidity}`;
+  city.innerHTML = jsonData.name;
+  getForecast(jsonData.coord.lat, jsonData.coord.lon);
+  temp.innerHTML = Math.floor(jsonData.main.temp) + " °C";
+  type.innerHTML = jsonData.weather[0].main;
+  humid.innerHTML = `Humidity : ${jsonData.main.humidity}`;
     visibility.innerHTML = `Visibility : ${jsonData.visibility/1000} km`;
-    pressure.innerHTML = `Pressure : ${jsonData.main.pressure} hPa`;
-    wind.innerHTML = `Speed : ${jsonData.wind.speed} m/s, Direction ${jsonData.wind.deg} `
-    minTemp.innerHTML = `Minimum temperature : ${jsonData.main.temp_min}`;
-    maxTemp.innerHTML = `Maximum tempreature : ${jsonData.main.temp_max}`;
+  pressure.innerHTML = `Pressure : ${jsonData.main.pressure} hPa`;
+  wind.innerHTML = `Speed : ${jsonData.wind.speed} m/s, Direction ${jsonData.wind.deg} `
+  minTemp.innerHTML = `Minimum temperature : ${jsonData.main.temp_min}`;
+  maxTemp.innerHTML = `Maximum tempreature : ${jsonData.main.temp_max}`;
 
-    c.style.display = "none";
-    const weatherType = jsonData.weather[0].main.toLowerCase();
+  c.style.display = "none";
+  const weatherType = jsonData.weather[0].main.toLowerCase();
 
-    const weatherBackgrounds = {
-      clouds: "cloudy2.jpg",
-      clear: "clear.jpg",
-      rain: "rainy.jpg",
-      snow: "snow.jpg",
-      haze: "haze.jpg",
-      mist: "haze.jpg",
-      thunderstorm: "Thunderstorm.jpg",
-      smoke: "smoke.jpg",
-    };
+  const weatherBackgrounds = {
+    clouds: "cloudy2.jpg",
+    clear: "clear.jpg",
+    rain: "rainy.jpg",
+    snow: "snow.jpg",
+    haze: "haze.jpg",
+    mist: "haze.jpg",
+    thunderstorm: "Thunderstorm.jpg",
+    smoke: "smoke.jpg",
+  };
 
-    ico.src = `assets/images/${weatherIcons[weatherType] || "wi-day-sunny.svg"}`;
-document.body.style.background = `url("assets/bg-images/${weatherBackgrounds[weatherType] || "clear.jpg"}") center center/cover no-repeat fixed`;
-    input.value = ""
+  ico.src = `assets/images/${weatherIcons[weatherType] || "wi-day-sunny.svg"}`;
+  document.body.style.background = `url("assets/bg-images/${weatherBackgrounds[weatherType] || "clear.jpg"}") center center/cover no-repeat fixed`;
+  input.value = ""
 }
 
 //Creating a new function to fetch hourly data from onecall api
@@ -173,8 +173,8 @@ function renderForecastFrom3Hour(list) {
 
 
 function myFun() {
-    search = input.value;
-    data(search)
+  search = input.value;
+  data(search)
 }
 
 window.addEventListener("load", () => {
