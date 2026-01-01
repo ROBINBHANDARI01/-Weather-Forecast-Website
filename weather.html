@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="weather.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;&display=swap" rel="stylesheet">
+</head>
+
+<body>
+ <div id="bg-overlay"></div>
+    <nav>
+        <h1>⛄ Weather Forecast</h1>
+        <div class="container">
+            <div class="srh">
+                
+                <input style="font-family: 'Montserrat'; font-size: 16px;" type="text" id="inp" value="" placeholder="🔍︎  Search City"></div>
+                
+                <button style="color: black; font-family: 'Montserrat'; font-weight: 600; font-size: 16px;" onclick="myFun()">Search</button>
+            </div>
+    </nav>
+    <div id="main">
+        <div id="weather-content">
+        
+       <img style="height: 70px;" id = "icon">
+        <h2 id="city"></h2>
+        <h2 id="temp"></h2>
+        <h2 style= "font-size: xx-large; margin-top: 100px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" id="title">Enter a city to get weather details</h2>
+        <h2 id="type" class="same"></h2>
+        <h2 id="wind" class="same"></h2>
+        <h2 id="humidity" class="same"></h3>
+            <h2 id="pressure" class="same"></h3>
+                <h2 id="visibility" class="same"></h3>
+                    <h2 id="min-temp" class="same"></h3>
+                        <h2 id="max-temp" class="same"></h3>
+
+    <div id="maindaily">
+        <div id="forecast" class="forecast"></div>
+            </div>
+</div>
+        </div>
+    </div>
+    </div>
+    <div id="error" style="display: none; text-align: center;">
+        <p></p>
+        <img id="errimg" src="" style="height: 300px; margin-top: 100px; border-radius: 8px;">
+    </div>
+    
+    <script src="weather.js"></script>
+</body>
+
+</html>

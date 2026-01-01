@@ -1,0 +1,217 @@
+@media(max-width: 548px){
+  
+}
+
+body{
+   position: relative;
+  background: url("assets/bg-images/cloudy2.jpg") center center/cover no-repeat fixed;
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    font-size: small;
+}
+.container{
+    display: flex;
+    gap: 1em;
+}
+
+#error{
+  transition: opacity 0.3s ease;
+}
+
+.forecast {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 5px;
+  scroll-snap-type: x mandatory;
+}
+
+.forecast-card {
+     background: rgba(255,255,255,0.15);
+     border-radius: 10px;
+     padding: 10px;
+     
+  scroll-snap-align: start;
+  min-width: 90px;
+  font-size:120%;
+}
+nav {
+  flex-wrap: wrap;
+  height: auto;
+  padding: 10px;
+  gap: 8px;
+}
+
+#bg-overlay {
+  position: fixed;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.75));
+  z-index: 0; /* stays behind all content */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+h1{
+    color: white;
+   font-size: clamp(18px, 4vw, 26px);
+}
+nav{
+    z-index: 1000;
+    position: fixed;
+    height: 51px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.575);
+    opacity: 100%;
+    align-items: center;
+    width: 100vw;
+}
+#inp{
+    height: 25px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px;
+    padding-left: 15px;
+    background-color: rgb(22, 22, 22);
+}
+
+#inp::placeholder{
+    color: white;
+   
+}
+
+#error p{
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: xx-large;
+}
+
+
+
+.daily-box {
+  background: rgba(62, 62, 62, 0.2);
+  padding: 10px 15px;
+  border-radius: 12px;
+  min-width: 120px;
+  font-family: 'Montserrat';
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+button{
+    color: white;
+    height: 33px;
+    width: 65px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px;
+    background-color: rgb(172, 172, 172);
+}
+
+img{
+    height: 50px;
+}
+#city {
+  font-size: clamp(32px, 6vw, 66px);
+  color: rgb(255, 242, 0);
+  font-weight: 200;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#temp {
+  font-size: clamp(28px, 5vw, 53px);
+}
+
+#main{
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+}
+.same{
+    margin-top: 13px;
+    font-size: 17px;
+}
+
+
+#maindaily{
+    margin: 40px 10px;
+    margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+    
+}
+.daily-forecast-date{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.max-daily-forecast {
+    
+    display: block;
+    text-align: center;
+    font-size: 15px
+}
+
+.min-daily-forecast{
+
+    display: block;
+    text-align: center;
+    font-size: 15px;
+}
+
+.daily-forecast-logo{
+    margin-top: 10px;
+}
+
+.weather-type-daily-forecast{
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 7px;
+}
+
+#icon{
+    margin-top: 70px;
+
+  filter: brightness(0) invert(1);
+}
+@media (max-width: 768px) {
+  #icon {
+    margin-top: 100px;
+  }
+
+  .same {
+    font-size: 14px;
+  }
+
+  #maindaily {
+    margin: 20px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav h1 {
+    display: none;
+  }
+
+  #inp {
+    width: 180px;
+  }
+
+  button {
+    width: 70px;
+  }
+
+  .forecast-card {
+    font-size: 14px;
+  }
+}
