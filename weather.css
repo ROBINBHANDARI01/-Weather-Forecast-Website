@@ -5,13 +5,14 @@
 }
 
 body {
-  position: relative;
-  min-height: 100vh;
-  background: url("assets/bg-images/cloudy2.jpg") center center / cover no-repeat fixed;
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
   color: white;
+}
+
+.Main-container {
+  min-height: 100dvh;
+  background: url("assets/bg-images/cloudy2.jpg") center / cover no-repeat;
 }
 
 #bg-overlay {
@@ -170,10 +171,7 @@ button:hover {
 /* MAKING RESPONSIVE FOR SMALLER SCREENS */
 
 @media (max-width: 768px) {
-  #icon {
-    margin-top: 40px;
-  }
-
+  
   .same {
     font-size: 14px;
   }
@@ -181,10 +179,7 @@ button:hover {
   #inp {
     width: 170px;
   }
-}
-
-@media (max-width: 768px) {
-  #main {
+   #main {
     padding-top: 90px;
   }
 
@@ -206,29 +201,4 @@ button:hover {
   }
 }
 
-@media (max-width: 480px) {
-  #main {
-    padding-top: 80px;
-  }
 
-  #city {
-    font-size: 32px;
-  }
-
-  #temp {
-    font-size: 26px;
-  }
-
-  .forecast-card {
-    max-width: 100%;
-  }
-
-  button {
-    width: 64px;
-    font-size: 14px;
-  }
-
-  #inp {
-    width: 150px;
-  }
-}
