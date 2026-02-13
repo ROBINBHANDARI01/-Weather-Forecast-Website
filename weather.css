@@ -197,8 +197,13 @@ button:hover {
   }
 
   .forecast {
-    padding: 16px 12px;
+    display: flex;
+    justify-content: space-around;
+    
   }
+
+  
+  
 }
 
 
