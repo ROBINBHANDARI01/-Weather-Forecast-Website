@@ -15,19 +15,25 @@
     <div class="Main-container">
         <div id="bg-overlay"></div>
         <nav>
-            <h1>⛄ Weather Forecast</h1>
+            <div class="nav-title">
+            <h1 class="snowman">⛄</h1>
+            <h1 class="webname">Weather Forecast</h1>
+            </div>
             <div class="container">
                 <div class="srh">
                     <input style="font-family: 'Montserrat'; font-size: 16px;" type="text" id="inp" value=""
                         placeholder="🔍︎  Search City">
                 </div>
-
-                <button style="color: black; font-family: 'Montserrat'; font-weight: 600; font-size: 16px;"
+                <div>
+                    <button style="color: black; font-family: 'Montserrat'; font-weight: 600; font-size: 16px;"
                     onclick="myFun()">Search</button>
             </div>
+
         </nav>
         <div id="main">
             <div id="weather-content">
+
+                
 
                 <img style="height: 70px;" id="icon">
                 <h2 id="city"></h2>
@@ -46,12 +52,13 @@
                     <div id="forecast" class="forecast"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="error" style="display: none; text-align: center;">
+             <div id="error" style="display: none; text-align: center;">
         <p></p>
         <img id="errimg" src="" style="height: 300px; margin-top: 100px; border-radius: 8px;">
     </div>
+        </div>
+    </div>
+   
 
     <script src="weather.js"></script>
 </body>

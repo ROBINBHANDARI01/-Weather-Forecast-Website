@@ -24,7 +24,7 @@ body {
 
 /* NAVBAR */
 
-nav {
+nav{
   position: fixed;
   top: 0;
   width: 100%;
@@ -117,6 +117,12 @@ button:hover {
   margin-top: 10px;
 }
 
+
+
+.nav-title{
+  display: flex;
+  align-items: center;
+}
 .same {
   margin-top: 12px;
   font-size: 16px;
@@ -201,9 +207,23 @@ button:hover {
     justify-content: space-around;
     
   }
+  
+}
 
-  
-  
+@media (max-width: 480px){
+  .webname{
+    display: none;
+  }
+
+  .snowman{
+    scale: 170%;
+  }
+
+  nav{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
 }
 
 

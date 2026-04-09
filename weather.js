@@ -42,6 +42,7 @@ input.addEventListener("keyup", function (event) {
     }
   }
 })
+
 const data = async function (search) {
   
   let getData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_key}&units=metric`);
@@ -55,14 +56,14 @@ const data = async function (search) {
   const errorText = errorScreen.querySelector("p");
   let errorImg = document.getElementById("errimg");
 
-  if (jsonData.cod == 400) {
+  if (Number(jsonData.cod) == 400) {
     errorText.innerText = "Enter a city name !"
     weatherContent.style.display = "none";
     errorScreen.style.display = "block";
     errorImg.src = "assets/icons/error1.png";
     return;
   }
-  if (jsonData.cod == 404) {
+  if (Number(jsonData.cod) == 404) {
     errorText.innerText = "Can't find city !"
     weatherContent.style.display = "none";
     errorScreen.style.display = "block";
@@ -86,6 +87,8 @@ const data = async function (search) {
 
   c.style.display = "none";
   const weatherType = jsonData.weather[0].main.toLowerCase();
+  console.log(weatherType)
+  
 
   const weatherBackgrounds = {
     clouds: "cloudy2.jpg",
@@ -97,20 +100,27 @@ const data = async function (search) {
     thunderstorm: "Thunderstorm.jpg",
     smoke: "smoke.jpg",
   };
-
+  const container = document.querySelector(".Main-container")
   ico.src = `assets/images/${weatherIcons[weatherType] || "wi-day-sunny.svg"}`;
-  document.body.style.background = `url("assets/bg-images/${weatherBackgrounds[weatherType] || "clear.jpg"}") center center/cover no-repeat fixed`;
+  container.style.background = `url("assets/bg-images/${weatherBackgrounds[weatherType] || "clear.jpg"}") center center/cover no-repeat fixed`;
   input.value = ""
 }
+
 
 //Creating a new function to fetch hourly data from onecall api
 
 async function getForecast(lat, lon) {
+
+  try{
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_key}&units=metric`
   );
   const data = await res.json();
   renderForecastFrom3Hour(data.list);
+}
+catch(err){
+  console.log(err)
+}
 }
 
 
@@ -121,7 +131,7 @@ function renderForecastFrom3Hour(list) {
 
   const days = {};
 
-  // 1️⃣ Group data by date
+  // Group data by date
   list.forEach(item => {
     const [date, time] = item.dt_txt.split(" ");
 
@@ -136,20 +146,20 @@ function renderForecastFrom3Hour(list) {
     // Collect all temperatures of the day
     days[date].temps.push(item.main.temp);
 
-    // Prefer 12:00 PM icon
+    
     if (time === "12:00:00") {
       days[date].icon = item.weather[0].main.toLowerCase();
       days[date].dt = item.dt;
     }
 
-    // Fallback icon (first available)
+  
     if (!days[date].icon) {
       days[date].icon = item.weather[0].main.toLowerCase();
       days[date].dt = item.dt;
     }
   });
 
-  // 2️⃣ Render next 6 days (skip today)
+  // Render next 6 days (skip today)
   Object.values(days).slice(1, 7).forEach(day => {
     const minTemp = Math.min(...day.temps);
     const maxTemp = Math.max(...day.temps);
@@ -173,7 +183,8 @@ function renderForecastFrom3Hour(list) {
 
 
 function myFun() {
-  search = input.value;
+
+  const search = input.value;
   data(search)
 }
 
@@ -197,8 +208,8 @@ window.addEventListener("load", () => {
 
         const jsonData = await res.json();
 
-        // 🔥 Directly render data (NO second fetch)
-        renderCurrentWeather(jsonData);
+        //  Directly render data 
+        data(jsonData.name);
         getForecast(lat, lon);
 
       } catch (err) {
